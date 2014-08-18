@@ -1,0 +1,79 @@
+--------------------------------------------------------------------------------------
+-						INSERÇÃO DOS DADOS DOS MÓDULOS  						    --
+--------------------------------------------------------------------------------------
+-- MENUS
+-->Módulos;
+
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Pessoa');
+|_____
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Pessoas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Estados');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Cidades');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Bairros');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Grupos');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Cargos');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Programas Sociais');	
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Secretaria');
+|_____	
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Exercícios');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Turmas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Grades');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Matriculas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Rematriculas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Séries');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Horários');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Cursos');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Turnos');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Disciplinas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Grade Padrão');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Salas);
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Situações');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Períodos');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Escolas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Tipos de Cursos');
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Nota');
+|_____
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Notas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Médias');
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Usuário');
+|_____
+
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Caderneta');
+|_____
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Aulas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Faltas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Tramites');
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Supervisão');
+|_____
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Situações Ocorridas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Andamento das cadernetas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Disponibilidades');
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Financeiro');
+|_____
+
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Documento');
+|_____
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Biblioteca');
+|_____
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Empréstimos');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Exemplares');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Obras');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Autores');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Fornecedores');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Editoras');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Séries');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Mídias');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Coleções');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Idiomas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Áreas');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Gŕaficos');
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Suporte');
+|_____
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Entidades');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Unidades');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Menus');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Formulários');	
+INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Fale Conosco');
+|_____
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Entrada');
+	INSERT INTO menus (nome, url, ordem, created_at, updated_at) VALUES ('Respondidos');
