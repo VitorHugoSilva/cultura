@@ -16,6 +16,10 @@ class Meta
     {
         return snake_case(str_replace('Controller', '', static::getController()));
     }
+    
+    public static function getLabelController(){
+        return ucwords(str_replace('_', ' ', self::getControllerSlug()));
+    }
 
     public static function getCurrentRouteDsl()
     {

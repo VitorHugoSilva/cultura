@@ -4,7 +4,7 @@
 --}}
 <h1>
     <i class="fa fa-{{$icon or 'list'}}"></i>
-    {{ $titulo or ucfirst(Meta::getControllerSlug()) }}
+    {{ $titulo or ucfirst(Meta::getLabelController()) }}
     <span class="small">
         <i class="fa fa-angle-right"></i>
         {{ Meta::getAction() }}
