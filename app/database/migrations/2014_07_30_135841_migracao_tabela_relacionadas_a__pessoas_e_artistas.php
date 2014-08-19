@@ -180,8 +180,8 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
         Schema::create('seguimentos_culturais_tipos', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 150)->unique();
-            $table->integer('seguimento_cultural_id')->unsigned();
-            $table->foreign('seguimento_cultural_id')->references('id')->on('seguimentos_culturais');
+            $table->integer('segmentocultural_id')->unsigned();
+            $table->foreign('segmentocultural_id')->references('id')->on('seguimentos_culturais');
             $table->timestamps();
         });
 
