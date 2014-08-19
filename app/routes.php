@@ -47,8 +47,8 @@ Route::resource('/atividades', 'AtividadesController');
 Route::get('/estados_civis/{id}/deletar', 'EstadosCivisController@destroy');
 Route::resource('/estados_civis', 'EstadosCivisController');
 
-Route::get('/seguimentos_culturais/{id}/deletar', 'SeguimentosCulturaisController@destroy');
-Route::resource('/seguimentos_culturais', 'SeguimentosCulturaisController');
+Route::get('/segmentos_culturais/{id}/deletar', 'SegmentosCulturaisController@destroy');
+Route::resource('/segmentos_culturais', 'SegmentosCulturaisController');
 
-Route::get('/seguimentos_culturais_tipos/{id}/deletar', 'SeguimentosCulturaisTiposController@destroy');
-Route::resource('/seguimentos_culturais_tipos', 'SeguimentosCulturaisTiposController');
+Route::get('/segmentos_culturais_tipos/{id}/deletar', 'SegmentosCulturaisTiposController@destroy');
+Route::resource('/segmentos_culturais_tipos', 'SegmentosCulturaisTiposController');
