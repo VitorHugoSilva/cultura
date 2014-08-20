@@ -8,6 +8,7 @@
     {{ HTML::style('assets/font-awesome/css/font-awesome.min.css') }}
     {{ HTML::style('assets/select/select2.css') }}
     {{ HTML::style('assets/select/select2-bootstrap.css') }}
+
    
     <style>
         body { padding-top: 40px; }
