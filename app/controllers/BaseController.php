@@ -4,7 +4,6 @@
  {
     public function __construct()
     {
-        $this->beforeFilter('auth');
         $this->beforeFilter('@setupMenu');
     }
 
