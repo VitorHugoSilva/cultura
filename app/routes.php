@@ -52,3 +52,6 @@ Route::resource('/segmentos_culturais', 'SegmentosCulturaisController');
 
 Route::get('/segmentos_culturais_tipos/{id}/deletar', 'SegmentosCulturaisTiposController@destroy');
 Route::resource('/segmentos_culturais_tipos', 'SegmentosCulturaisTiposController');
+
+Route::get('/user/{id}/deletar', 'UserController@destroy');
+Route::resource('/user', 'UserController');
