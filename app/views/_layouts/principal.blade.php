@@ -75,16 +75,12 @@
     <script type="text/javascript">
     $(document).ready(function(){
         $(".alert").alert();
-        $('.novo').click(function(){
-            $('.form-novo').toggleClass('hidden');
-        });
-
         $("#btn-acao-submit").click(function(){
             $('#conteudo form').submit();
         });
 
         $('#alertas').delay(800).fadeOut('slow');
-       // $("select").select2();
+        $("select").select2();
 
         @section('global-js')
         @show

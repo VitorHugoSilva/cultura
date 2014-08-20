@@ -172,16 +172,16 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('seguimentos_culturais', function(Blueprint $table) {
+        Schema::create('segmentos_culturais', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 150)->unique();
             $table->timestamps();
         });
-        Schema::create('seguimentos_culturais_tipos', function(Blueprint $table) {
+        Schema::create('segmentos_culturais_tipos', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 150)->unique();
             $table->integer('segmentocultural_id')->unsigned();
-            $table->foreign('segmentocultural_id')->references('id')->on('seguimentos_culturais');
+            $table->foreign('segmentocultural_id')->references('id')->on('segmentos_culturais');
             $table->timestamps();
         });
 

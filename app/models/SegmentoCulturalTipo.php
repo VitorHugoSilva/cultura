@@ -4,10 +4,10 @@ class SegmentoCulturalTipo extends BaseModel
 {
     protected $fillable = ['nome','segmentocultural_id'];
 
-    protected $table = 'seguimentos_culturais_tipos';
+    protected $table = 'segmentos_culturais_tipos';
 
     public static $rules = [
-        'nome' => 'required|max:100|unique:seguimentos_culturais_tipos',
+        'nome' => 'required|max:100|unique:segmentos_culturais_tipos',
         'segmentocultural_id'=>'required|integer'
     ];
 
