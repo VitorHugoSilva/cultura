@@ -15,7 +15,8 @@ abstract class BaseModel extends \LaravelBook\Ardent\Ardent
         'alpha_num' => 'O campo :attribute deve conter apenas letras e números',
         'unique'    => 'Já existe um registro com o(a) mesmo(a) :attribute',
         'size'      =>  'O campo :attribute precisa ter :size caracteres.',
-        'max'       => 'O campo :attribute não pode ser maior que :max caracteres'
+        'max'       => 'O campo :attribute não pode ser maior que :max caracteres',
+        'email'     =>  'O campo :attribute deve ser um email válido'
     ];
 
     public static function meta()
