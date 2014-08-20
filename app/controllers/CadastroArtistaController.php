@@ -11,6 +11,17 @@ class CadastroArtistaController extends Controller
         $bairro = new Bairro(Input::all());
         
         if ($artista->save()) {
+            /*
+             * Foreach nos dados do enderço
+             */
+            
+            /*
+             * Foreach nos dados do Contato
+             */
+            
+            /*
+             * Foreach nos segmentos selecionados
+             */
         }
 
         Input::flash();
