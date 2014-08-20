@@ -13,17 +13,24 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     protected $fillable = ['email', 'password'];
     protected $table = 'users';
     public static $rules = [
-        'email' => 'required|max:40|unique:users|email'
+        'email'     =>  'required|max:40|unique:users|email',
+        'password'  =>  'required|min:6'
     ];
+
+    
     public static $meta = [
-        'email' => 'text|Email|Preencha o email',
+        'email'     => 'text|Email|Preencha o email',
+        'password'  =>  'password|Senha|Preencha a Senha'
     ];
 
     public function beforeValidate() {
-//        $this->attributes['password'] = Hash::make('senhaPadraoTeste');
         if (User::whereEmail($this->email)->notThis()->count()) {
             $this->errors()->add('email', 'Este email já está cadastrado!');
         }
+    }
+
+    public function pessoa(){
+        return $this->belongsTo('Pessoa');
     }
 
     /**

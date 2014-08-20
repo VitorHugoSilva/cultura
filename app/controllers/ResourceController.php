@@ -16,7 +16,7 @@ abstract class ResourceController extends BaseController
      *
      * @return Response
      */
-    public function index()
+    public function listar()
     {
         $query = call_user_func(static::$model . '::search', Input::get('pesquisa', null));
         Input::flash();
@@ -31,7 +31,7 @@ abstract class ResourceController extends BaseController
      *
      * @return Response
      */
-    public function create()
+    public function criar()
     {
         return View::make($this->getViewName(__FUNCTION__))->with([
             'model' => new static::$model
@@ -43,19 +43,19 @@ abstract class ResourceController extends BaseController
      *
      * @return Response
      */
-    public function store()
+    public function salvar()
     {
         $model = new static::$model(Input::all());
 
         if ($model->save()) {
             Session::flash('mensagem', self::MSG_SUCESSO_SALVAR);
 
-            return Redirect::action(get_called_class() . '@index');
+            return Redirect::action(get_called_class() . '@listar');
         }
 
         Input::flash();
 
-        return Redirect::action(get_called_class() . '@create')->withErrors($model->errors());
+        return Redirect::action(get_called_class() . '@criar')->withErrors($model->errors());
     }
 
     /**
@@ -63,7 +63,7 @@ abstract class ResourceController extends BaseController
      *
      * @return Response
      */
-    public function show($id)
+    public function exibir($id)
     {
         if ($model = call_user_func(static::$model . '::find', $id)) {
             return View::make($this->getViewName(__FUNCTION__))->with([
@@ -73,7 +73,7 @@ abstract class ResourceController extends BaseController
 
         Session::flash('erro', self::MSG_ERRO_FIND);
 
-        return Redirect::action(get_called_class() . '@index');
+        return Redirect::action(get_called_class() . '@listar');
     }
 
     /**
@@ -82,7 +82,7 @@ abstract class ResourceController extends BaseController
      * @param  int      $id
      * @return Response
      */
-    public function edit($id)
+    public function editar($id)
     {
         if ($model = call_user_func(static::$model . '::find', $id)) {
             return View::make($this->getViewName(__FUNCTION__))->with([
@@ -92,7 +92,7 @@ abstract class ResourceController extends BaseController
 
         Session::flash('erro', self::MSG_ERRO_FIND);
 
-        return Redirect::action(get_called_class() . '@index');
+        return Redirect::action(get_called_class() . '@listar');
     }
 
     /**
@@ -101,19 +101,19 @@ abstract class ResourceController extends BaseController
      * @param  int      $id
      * @return Response
      */
-    public function update($id)
+    public function alterar($id)
     {
         if ($model = call_user_func(static::$model . '::find', $id)) {
             $model->fill(Input::all());
             if ($model->updateUniques()) {
                 Session::flash('mensagem', self::MSG_SUCESSO_SALVAR);
 
-                return Redirect::action(get_called_class() . '@index');
+                return Redirect::action(get_called_class() . '@listar');
             }
 
             Input::flash();
 
-            return Redirect::action(get_called_class() . '@edit', $id)->withErrors($model->errors());
+            return Redirect::action(get_called_class() . '@editar', $id)->withErrors($model->errors());
         }
     }
 
@@ -123,7 +123,7 @@ abstract class ResourceController extends BaseController
      * @param  int      $id
      * @return Response
      */
-    public function destroy($id)
+    public function deletar($id)
     {
         if (call_user_func(static::$model . '::destroy', $id)) {
             Session::flash('mensagem', self::MSG_SUCESSO_DELETE);
@@ -131,7 +131,7 @@ abstract class ResourceController extends BaseController
             Session::flash('erro', self::MSG_ERRO_DELETE);
         }
 
-        return Redirect::action(get_called_class() . '@index');
+        return Redirect::action(get_called_class() . '@listar');
     }
 
     protected function getViewName($method)

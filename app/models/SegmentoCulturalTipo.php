@@ -27,12 +27,11 @@ class SegmentoCulturalTipo extends BaseModel
     {
         return $this->belongsTo('SegmentoCultural');
     }
+
     public static function options()
     {
         return static::orderBy('nome')->lists('nome', 'id');
     }
-    public static function create(array $atribus){
-         var_dump($atribus);
-         exit();
-    }
+
+
 }

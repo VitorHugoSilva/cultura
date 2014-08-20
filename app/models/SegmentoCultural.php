@@ -13,5 +13,9 @@ class SegmentoCultural extends BaseModel
     public static $meta = [
         'nome' => 'text|Segmento Cultural|Segmento'
     ];
-    public static $asOption = ['nome', 'id'];
+
+     public static function options()
+    {
+        return static::orderBy('nome')->lists('nome', 'id');
+    }
 }

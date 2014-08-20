@@ -37,7 +37,7 @@
             <div class="page-header">
                 @section('titulo')
                     @if(View::exists(Meta::getControllerSlug() . '.' . 'titulo'))
-                        @include(Meta::getControllerSlug() . '.' . 'titulo')
+                        @include(Meta::getControllerSlug() . '.' . 'titulo', ['titulo' => 'Usuários'])
                     @else
                         @include('_parciais.titulo')
                     @endif

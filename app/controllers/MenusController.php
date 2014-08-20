@@ -7,12 +7,12 @@ class MenusController extends \BaseController
      *
      * @return Response
      */
-    public function index()
+    public function listar()
     {
         $query = Menu::where(['menu_id' => Input::get('menu')])->orderBy('ordem','asc');
         $superior = Menu::find(Input::get('menu'));
 
-        return View::make('menus.index')->with([
+        return View::make('menus.listar')->with([
             'itens' => $query->get(),
             'trilha' =>   ($superior) ? $superior->superiores() : [],
             'superior' => $superior
@@ -24,9 +24,9 @@ class MenusController extends \BaseController
      *
      * @return Response
      */
-    public function create($menu_id = null)
+    public function criar($menu_id = null)
     {
-        return View::make('menus.create')->with([
+        return View::make('menus.criar')->with([
             'menu' => new Menu,
             'menu_id' => $menu_id
         ]);
@@ -37,7 +37,7 @@ class MenusController extends \BaseController
      *
      * @return Response
      */
-    public function store()
+    public function salvar()
     {
         $this->clearCache();
         if (Input::has('menu_id')) {
@@ -47,7 +47,7 @@ class MenusController extends \BaseController
         }
         Session::flash('mensagem', 'Salvo com sucesso');
 
-        return Redirect::action('MenusController@index');
+        return Redirect::action('MenusController@listar');
     }
 
     /**
@@ -56,7 +56,7 @@ class MenusController extends \BaseController
      * @param  int      $id
      * @return Response
      */
-    public function show($id)
+    public function exibir($id)
     {
         //
     }
@@ -67,9 +67,9 @@ class MenusController extends \BaseController
      * @param  int      $id
      * @return Response
      */
-    public function edit($id)
+    public function editar($id)
     {
-        return View::make('menus.edit')->with([
+        return View::make('menus.editar')->with([
             'menu' => Menu::find($id)
         ]);
     }
@@ -80,13 +80,13 @@ class MenusController extends \BaseController
      * @param  int      $id
      * @return Response
      */
-    public function update($id)
+    public function alterar($id)
     {
         $this->clearCache();
         Menu::find($id)->fill(Input::all())->save();
         Session::flash('mensagem', 'Atualizado com sucesso :)');
 
-        return Redirect::action('MenusController@index');
+        return Redirect::action('MenusController@listar');
     }
 
     /**
@@ -95,7 +95,7 @@ class MenusController extends \BaseController
      * @param  int      $id
      * @return Response
      */
-    public function destroy($id)
+    public function deletar($id)
     {
         $this->clearCache();
         $menu = Menu::find($id);

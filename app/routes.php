@@ -1,7 +1,7 @@
 <?php
+Route::pattern('id', '[0-9]+');
 
-//pagina inicial já mapeia para o create do Artista
-Route::get('/', 'CadastroArtistaController@create');
+Route::get('/', 'CadastroArtistaController@criar');
 
 Route::group(array('prefix' => 'entrada'), function()
 {
@@ -19,52 +19,372 @@ Route::filter('autenticacao', function() {
 Route::group(array('prefix' => 'admin', 'before' => 'autenticacao'), function()
 {
     Route::get('/', 'InicioAdministracaoController@index');
-    Route::get('menus/{id}/deletar', 'MenusController@destroy');
-    Route::get('menus/create/{menu_id?}', 'MenusController@create');
-    Route::resource('/menus', 'MenusController');
 
-    Route::get('/estados/{id}/deletar', 'EstadosController@destroy');
-    Route::resource('/estados', 'EstadosController');
+    // Menus
+    Route::get(
+            'menus/criar/{id}',
+            [
+                'as'    =>  'menus.criar',
+                'uses'  =>  'MenusController@criar'
+            ]);
 
-    Route::get('/cidades/{id}/deletar', 'CidadesController@destroy');
-    Route::resource('/cidades', 'CidadesController');
+    Route::post(
+            'menus/',
+            [
+                'as'    =>  'menus.salvar',
+                'uses'  =>  'MenusController@salvar'
+            ]);
 
-    Route::get('/bairros/{id}/deletar', 'BairrosController@destroy');
-    Route::resource('/bairros', 'BairrosController');
+    Route::get(
+            'menus/',
+             [
+                'as'    =>  'menus.listar',
+                'uses'  =>  'MenusController@listar'
+            ]);
 
-    Route::get('/cores/{id}/deletar', 'CoresController@destroy');
-    Route::resource('/cores', 'CoresController');
+    Route::get(
+            'menus/{id}',
+            [
+                'as'    =>  'menus.exibir',
+                'uses'  =>  'MenusController@exibir'
+            ]);
 
-    Route::get('/entidades/{id}/deletar', 'EntidadesController@destroy');
-    Route::resource('/entidades', 'EntidadesController');
+    Route::get(
+            'menus/{id}/editar', 
+            [
+                'as'    =>  'menus.editar',
+                'uses'  =>  'MenusController@editar'
+            ]);
 
-    Route::get('/atividades/{id}/deletar', 'AtividadesController@destroy');
-    Route::resource('/atividades', 'AtividadesController');
 
-    Route::get('/grupos/{id}/deletar', 'GruposController@destroy');
-    Route::resource('/grupos', 'GruposController');
+    Route::match(
+            ['PUT'],
+            'menus/{id}',
+            [
+                'as'    =>  'menus.alterar',
+                'uses'  =>  'MenusController@alterar'
+            ]);
 
-    Route::get('/permissoes/{id}/deletar', 'PermissoesController@destroy');
-    Route::resource('/permissoes', 'PermissoesController');
+    Route::get(
+            'menus/{id}/deletar', 
+            [
+                'as'    =>  'menus.deletar',
+                'uses'  =>  'MenusController@deletar'
+            ]);
 
-    Route::get('/paises/{id}/deletar', 'PaisesController@destroy');
-    Route::resource('/paises', 'PaisesController');
+    //Tipo Pessoas
+    
+    Route::get(
+            'integrantes/criar',
+            [
+                'as'    =>  'integrantes.criar',
+                'uses'  =>  'IntegrantesController@criar'
+            ]);
 
-    Route::get('/atividades/{id}/deletar', 'AtividadesController@destroy');
-    Route::resource('/atividades', 'AtividadesController');
+    Route::post(
+            'integrantes/',
+            [
+                'as'    =>  'integrantes.salvar',
+                'uses'  =>  'IntegrantesController@salvar'
+            ]);
 
-    Route::get('/estados_civis/{id}/deletar', 'EstadosCivisController@destroy');
-    Route::resource('/estados_civis', 'EstadosCivisController');
+    Route::get(
+            'integrantes/',
+             [
+                'as'    =>  'integrantes.listar',
+                'uses'  =>  'IntegrantesController@listar'
+            ]);
 
-    Route::get('/segmentos_culturais/{id}/deletar', 'SegmentosCulturaisController@destroy');
-    Route::resource('/segmentos_culturais', 'SegmentosCulturaisController');
+    Route::get(
+            'integrantes/{id}',
+            [
+                'as'    =>  'integrantes.exibir',
+                'uses'  =>  'IntegrantesController@exibir'
+            ]);
 
-    Route::get('/segmentos_culturais_tipos/{id}/deletar', 'SegmentosCulturaisTiposController@destroy');
-    Route::resource('/segmentos_culturais_tipos', 'SegmentosCulturaisTiposController');
+    Route::get(
+            'integrantes/{id}/editar', 
+            [
+                'as'    =>  'integrantes.editar',
+                'uses'  =>  'IntegrantesController@editar'
+            ]);
 
-    Route::get('/user/{id}/deletar', 'UserController@destroy');
-    Route::resource('/user', 'UserController');
 
-    Route::get('/tipos_pessoas/{id}/deletar', 'TiposPessoasController@destroy');
-    Route::resource('/tipos_pessoas', 'TiposPessoasController');
+    Route::match(
+            ['PUT'],
+            'integrantes/{id}',
+            [
+                'as'    =>  'integrantes.alterar',
+                'uses'  =>  'IntegrantesController@alterar'
+            ]);
+
+    Route::get(
+            'integrantes/{id}/deletar', 
+            [
+                'as'    =>  'Integrantes.deletar',
+                'uses'  =>  'IntegrantesController@deletar'
+            ]);
+
+     // grupos
+    Route::get(
+            'grupos/criar',
+            [
+                'as'    =>  'grupos.criar',
+                'uses'  =>  'GruposController@criar'
+            ]);
+
+    Route::post(
+            'grupos/',
+            [
+                'as'    =>  'grupos.salvar',
+                'uses'  =>  'GruposController@salvar'
+            ]);
+
+    Route::get(
+            'grupos/',
+             [
+                'as'    =>  'grupos.listar',
+                'uses'  =>  'GruposController@listar'
+            ]);
+
+    Route::get(
+            'grupos/{id}',
+            [
+                'as'    =>  'grupos.exibir',
+                'uses'  =>  'GruposController@exibir'
+            ]);
+
+    Route::get(
+            'grupos/{id}/editar', 
+            [
+                'as'    =>  'grupos.editar',
+                'uses'  =>  'GruposController@editar'
+            ]);
+
+
+    Route::match(
+            ['PUT'],
+            'grupos/{id}',
+            [
+                'as'    =>  'grupos.alterar',
+                'uses'  =>  'GruposController@alterar'
+            ]);
+
+    Route::get(
+            'grupos/{id}/deletar', 
+            [
+                'as'    =>  'grupos.deletar',
+                'uses'  =>  'GruposController@deletar'
+            ]);
+
+    // Segmentos Culturais Tipos
+    Route::get(
+            'segmentos_culturais_tipos/criar',
+            [
+                'as'    =>  'segmentos_culturais_tipos.criar',
+                'uses'  =>  'SegmentosCulturaisTiposController@criar'
+            ]);
+
+    Route::post(
+            'segmentos_culturais_tipos/',
+            [
+                'as'    =>  'segmentos_culturais_tipos.salvar',
+                'uses'  =>  'SegmentosCulturaisTiposController@salvar'
+            ]);
+
+    Route::get(
+            'segmentos_culturais_tipos/',
+             [
+                'as'    =>  'segmentos_culturais_tipos.listar',
+                'uses'  =>  'SegmentosCulturaisTiposController@listar'
+            ]);
+
+    Route::get(
+            'segmentos_culturais_tipos/{id}',
+            [
+                'as'    =>  'segmentos_culturais_tipos.exibir',
+                'uses'  =>  'SegmentosCulturaisTiposController@exibir'
+            ]);
+
+    Route::get(
+            'segmentos_culturais_tipos/{id}/editar', 
+            [
+                'as'    =>  'segmentos_culturais_tipos.editar',
+                'uses'  =>  'SegmentosCulturaisTiposController@editar'
+            ]);
+
+
+    Route::match(
+            ['PUT'],
+            'segmentos_culturais_tipos/{id}',
+            [
+                'as'    =>  'segmentos_culturais_tipos.alterar',
+                'uses'  =>  'SegmentosCulturaisTiposController@alterar'
+            ]);
+
+    Route::get(
+            'segmentos_culturais_tipos/{id}/deletar', 
+            [
+                'as'    =>  'segmentos_culturais_tipos.deletar',
+                'uses'  =>  'SegmentosCulturaisTiposController@deletar'
+            ]);
+
+    // Segmentos Culturais
+    Route::get(
+            'segmentos_culturais/criar',
+            [
+                'as'    =>  'segmentos_culturais.criar',
+                'uses'  =>  'SegmentosCulturaisController@criar'
+            ]);
+
+    Route::post(
+            'segmentos_culturais/',
+            [
+                'as'    =>  'segmentos_culturais.salvar',
+                'uses'  =>  'SegmentosCulturaisController@salvar'
+            ]);
+
+    Route::get(
+            'segmentos_culturais/',
+             [
+                'as'    =>  'segmentos_culturais.listar',
+                'uses'  =>  'SegmentosCulturaisController@listar'
+            ]);
+
+    Route::get(
+            'segmentos_culturais/{id}',
+            [
+                'as'    =>  'segmentos_culturais.exibir',
+                'uses'  =>  'SegmentosCulturaisController@exibir'
+            ]);
+
+    Route::get(
+            'segmentos_culturais/{id}/editar', 
+            [
+                'as'    =>  'segmentos_culturais.editar',
+                'uses'  =>  'SegmentosCulturaisController@editar'
+            ]);
+
+
+    Route::match(
+            ['PUT'],
+            'segmentos_culturais/{id}',
+            [
+                'as'    =>  'segmentos_culturais.alterar',
+                'uses'  =>  'SegmentosCulturaisController@alterar'
+            ]);
+
+    Route::get(
+            'segmentos_culturais/{id}/deletar', 
+            [
+                'as'    =>  'segmentos_culturais.deletar',
+                'uses'  =>  'SegmentosCulturaisController@deletar'
+            ]);
+
+    // User
+    Route::get(
+            'usuarios/criar',
+            [
+                'as'    =>  'user.criar',
+                'uses'  =>  'UserController@criar'
+            ]);
+
+    Route::post(
+            'usuarios/',
+            [
+                'as'    =>  'user.salvar',
+                'uses'  =>  'UserController@salvar'
+            ]);
+
+    Route::get(
+            'usuarios/',
+             [
+                'as'    =>  'user.listar',
+                'uses'  =>  'UserController@listar'
+            ]);
+
+    Route::get(
+            'usuarios/{user}',
+            [
+                'as'    =>  'user.exibir',
+                'uses'  =>  'UserController@exibir'
+            ]);
+
+    Route::get(
+            'usuarios/{id}/editar', 
+            [
+                'as'    =>  'user.editar',
+                'uses'  =>  'UserController@editar'
+            ]);
+
+
+    Route::match(
+            ['PUT'],
+            'usuarios/{id}',
+            [
+                'as'    =>  'user.alterar',
+                'uses'  =>  'UserController@alterar'
+            ]);
+
+    Route::get(
+            'usuarios/{id}/deletar', 
+            [
+                'as'    =>  'user.deletar',
+                'uses'  =>  'UserController@deletar'
+            ]);
+
+    //Tipo Pessoas
+    
+    Route::get(
+            'tipos_pessoas/criar',
+            [
+                'as'    =>  'tipos_pessoas.criar',
+                'uses'  =>  'TiposPessoasController@criar'
+            ]);
+
+    Route::post(
+            'tipos_pessoas/',
+            [
+                'as'    =>  'tipos_pessoas.salvar',
+                'uses'  =>  'TiposPessoasController@salvar'
+            ]);
+
+    Route::get(
+            'tipos_pessoas/',
+             [
+                'as'    =>  'tipos_pessoas.listar',
+                'uses'  =>  'TiposPessoasController@listar'
+            ]);
+
+    Route::get(
+            'tipos_pessoas/{id}',
+            [
+                'as'    =>  'tipos_pessoas.exibir',
+                'uses'  =>  'TiposPessoasController@exibir'
+            ]);
+
+    Route::get(
+            'tipos_pessoas/{id}/editar', 
+            [
+                'as'    =>  'tipos_pessoas.editar',
+                'uses'  =>  'TiposPessoasController@editar'
+            ]);
+
+
+    Route::match(
+            ['PUT'],
+            'tipos_pessoas/{id}',
+            [
+                'as'    =>  'tipos_pessoas.alterar',
+                'uses'  =>  'TiposPessoasController@alterar'
+            ]);
+
+    Route::get(
+            'tipos_pessoas/{id}/deletar', 
+            [
+                'as'    =>  'tipos_pessoas.deletar',
+                'uses'  =>  'TiposPessoasController@deletar'
+            ]);
+
+
 });

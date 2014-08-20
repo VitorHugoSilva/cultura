@@ -16,13 +16,13 @@
             @endforeach
             <td class="acoes">
                 <div class="btn-group pull-right">
-                    <a class="btn btn-default" href="{{URL::action('MenusController@index')}}?menu={{$item->id}}">
+                    <a class="btn btn-default" href="{{URL::action('MenusController@listar')}}?menu={{$item->id}}">
                         <i class="fa fa-arrow-right"></i>
                     </a>
-                    <a class="btn btn-default" href="{{URL::action('MenusController@edit', [$item->id])}}">
+                    <a class="btn btn-default" href="{{URL::action('MenusController@editar', [$item->id])}}">
                         <i class="fa fa-pencil-square-o"></i>
                     </a>
-                    <a class="btn btn-danger" href="{{URL::action('MenusController@destroy', [$item->id])}}">
+                    <a class="btn btn-danger" href="{{URL::action('MenusController@deletar', [$item->id])}}">
                         <i class="fa fa-trash-o"></i>
                     </a>
                 </div>
@@ -33,6 +33,6 @@
 </table>
 @endif
 
-<!-- <a href="{{URL::action('MenusController@create', [Input::get('menu')])}}" class="btn btn-default btn-large btn-block">
+<!-- <a href="{{URL::action('MenusController@criar', [Input::get('menu')])}}" class="btn btn-default btn-large btn-block">
     <i class="fa fa-plus"></i> Adicionar Sub-menu
 </a> -->
