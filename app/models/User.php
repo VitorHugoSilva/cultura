@@ -20,7 +20,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     ];
 
     public function beforeValidate() {
-        $this->attributes['password'] = Hash::make('senhaPadraoTeste');
+//        $this->attributes['password'] = Hash::make('senhaPadraoTeste');
         if (User::whereEmail($this->email)->notThis()->count()) {
             $this->errors()->add('email', 'Este email já está cadastrado!');
         }
