@@ -38,7 +38,7 @@
             <div class="page-header">
                 @section('titulo')
                     @if(View::exists(Meta::getControllerSlug() . '.' . 'titulo'))
-                        @include(Meta::getControllerSlug() . '.' . 'titulo', ['titulo' => 'Usuários'])
+                        @include(Meta::getControllerSlug() . '.' . 'titulo')
                     @else
                         @include('_parciais.titulo')
                     @endif
@@ -82,9 +82,28 @@
 
         $('#alertas').delay(800).fadeOut('slow');
         $("select").select2();
-
-        @section('global-js')
-        @show
+        
+        $(document).on('click','.addElement', function(){
+            var clone = $(this).parent().parent().clone().insertAfter($(this).parent().parent());
+            $(clone).find('.addElement').remove();
+            $(clone).find('.col-sm-3').append('<span class="btn btn-danger removeElement"> <i class="fa fa-minus"></i> Remover</span>');
+            $(this).parent().parent().find('input').val('');
+        });
+        $(document).on('click','.removeElement',  function(){
+            $(this).parent().parent().remove();
+            
+        });
+        
+        $(document).on('click','.addGroup', function(){
+            var clone = $(this).parent().parent().parent().clone().insertAfter($(this).parent().parent().parent());
+            $(clone).find('.addElement').remove();
+            $(clone).find('.btn-group').append('<span class="btn btn-danger removeGroup"> <i class="fa fa-minus"></i> Remover</span>').find('.addGroup').remove();
+            $(this).parent().parent().parent().find('input').val('');
+        });
+        $(document).on('click','.removeGroup',  function(){
+            $(this).parent().parent().parent().remove();
+            
+        });
     });   
     </script>
 

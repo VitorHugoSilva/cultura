@@ -4,9 +4,9 @@
 --}}
 <h1>
     <i class="fa fa-{{$icon or 'list'}}"></i>
-    {{ 'Usuários' }}
+    {{ 'SCA' }}
     <span class="small">
         <i class="fa fa-angle-right"></i>
-        {{ Meta::getAction() }}
+    {{ 'Ambiente Administrativo' }}
     </span>
 </h1>

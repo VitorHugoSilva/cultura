@@ -1,7 +1,7 @@
 <?php
 Route::pattern('id', '[0-9]+');
 
-Route::get('/', 'CadastroArtistaController@criar');
+Route::get('/', 'ArtistaController@criar');
 
 Route::group(array('prefix' => 'entrada'), function()
 {
@@ -18,7 +18,15 @@ Route::filter('autenticacao', function() {
 
 Route::group(array('prefix' => 'admin', 'before' => 'autenticacao'), function()
 {
-    Route::get('/', 'InicioAdministracaoController@index');
+    Route::get('/', 'InicioAdministracaoController@listar');
+    Route::get('/pessoas', [
+                'as'    =>  'artista.criar',
+                'uses'  =>  'ArtistaController@criar']);
+    Route::post('/pessoas',
+            [
+                'as'    =>  'artista.salvar',
+                'uses'  =>  'ArtistaController@salvar'
+            ]);
 
     // Menus
     Route::get(
@@ -181,36 +189,36 @@ Route::group(array('prefix' => 'admin', 'before' => 'autenticacao'), function()
     Route::get(
             'segmentos_culturais_tipos/criar',
             [
-                'as'    =>  'segmentos_culturais_tipos.criar',
-                'uses'  =>  'SegmentosCulturaisTiposController@criar'
+                'as'    =>  'area_representacao.criar',
+                'uses'  =>  'AreaRepresentacaoController@criar'
             ]);
 
     Route::post(
             'segmentos_culturais_tipos/',
             [
-                'as'    =>  'segmentos_culturais_tipos.salvar',
-                'uses'  =>  'SegmentosCulturaisTiposController@salvar'
+                'as'    =>  'area_representacao.salvar',
+                'uses'  =>  'AreaRepresentacaoController@salvar'
             ]);
 
     Route::get(
             'segmentos_culturais_tipos/',
              [
-                'as'    =>  'segmentos_culturais_tipos.listar',
-                'uses'  =>  'SegmentosCulturaisTiposController@listar'
+                'as'    =>  'area_representacao.listar',
+                'uses'  =>  'AreaRepresentacaoController@listar'
             ]);
 
     Route::get(
             'segmentos_culturais_tipos/{id}',
             [
-                'as'    =>  'segmentos_culturais_tipos.exibir',
-                'uses'  =>  'SegmentosCulturaisTiposController@exibir'
+                'as'    =>  'area_representacao.exibir',
+                'uses'  =>  'AreaRepresentacaoController@exibir'
             ]);
 
     Route::get(
             'segmentos_culturais_tipos/{id}/editar', 
             [
-                'as'    =>  'segmentos_culturais_tipos.editar',
-                'uses'  =>  'SegmentosCulturaisTiposController@editar'
+                'as'    =>  'area_representacao.editar',
+                'uses'  =>  'AreaRepresentacaoController@editar'
             ]);
 
 
@@ -218,15 +226,15 @@ Route::group(array('prefix' => 'admin', 'before' => 'autenticacao'), function()
             ['PUT'],
             'segmentos_culturais_tipos/{id}',
             [
-                'as'    =>  'segmentos_culturais_tipos.alterar',
-                'uses'  =>  'SegmentosCulturaisTiposController@alterar'
+                'as'    =>  'area_representacao.alterar',
+                'uses'  =>  'AreaRepresentacaoController@alterar'
             ]);
 
     Route::get(
             'segmentos_culturais_tipos/{id}/deletar', 
             [
-                'as'    =>  'segmentos_culturais_tipos.deletar',
-                'uses'  =>  'SegmentosCulturaisTiposController@deletar'
+                'as'    =>  'area_representacao.deletar',
+                'uses'  =>  'AreaRepresentacaoController@deletar'
             ]);
 
     // Segmentos Culturais
