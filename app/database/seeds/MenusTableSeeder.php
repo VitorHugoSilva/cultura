@@ -55,9 +55,9 @@ class MenusTableSeeder extends Seeder
         ]);
 
         Menu::create([
-                'nome'      =>  'Categoria de Segmentos',
+                'nome'      =>  'Áreas de representação',
                 'menu_id'   =>  $menu->id,
-                'url'       =>  'admin/segmentos_culturais',
+                'url'       =>  'admin/segmentos_culturais_tipos',
                 'descricao' =>  'Gerenciamento das categorias dos segmentos',
                 'ordem'     =>  '1',
                 'ativo'     =>   1,
@@ -67,7 +67,7 @@ class MenusTableSeeder extends Seeder
         Menu::create([
                 'nome'      =>  'Segmentos',
                 'menu_id'   =>  $menu->id,
-                'url'       =>  'admin/segmentos_culturais_tipos',
+                'url'       =>  'admin/segmentos_culturais',
                 'descricao' =>  'Gerenciamento dos segmentos',
                 'ordem'     =>  '2',
                 'ativo'     =>   1,

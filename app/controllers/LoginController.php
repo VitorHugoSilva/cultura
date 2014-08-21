@@ -12,7 +12,7 @@ class LoginController extends Controller {
                     'password' => Input::get('password')
                         ], (bool) Input::get('lembrar'))) {
 
-            return Redirect::action('InicioAdministracaoController@index');
+            return Redirect::action('InicioAdministracaoController@listar');
         }
         Input::flash();
         Session::flash('erro', 'Não foi possível logar');

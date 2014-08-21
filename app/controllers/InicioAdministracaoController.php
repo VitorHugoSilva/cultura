@@ -2,7 +2,7 @@
 
 class InicioAdministracaoController extends BaseController
 {
-    public function index()
+    public function listar()
     {
         return View::make('_layouts.principal');
     }
