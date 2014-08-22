@@ -25,8 +25,8 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
             $table->string('cpf')->nullable;
             $table->string('identidade')->nullable;
             $table->string('cnpj')->nullable;
-            $table->date('data_nascimento');
-            $table->boolean('possui_cadastro_siniic')->default(false);
+            $table->date('data_nascimento')->nullable;
+            $table->boolean('possui_cadastro_siniic')->default(false)->nullable;
             $table->text('apresentacao')->nullable;
             $table->text('historico')->nullable;
             $table->text('portfolio')->nullable;
