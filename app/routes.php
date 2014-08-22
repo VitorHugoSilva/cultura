@@ -11,6 +11,12 @@ Route::group(array('prefix' => 'entrada'), function()
     Route::get('logout', array('uses' => 'LoginController@logout'));
 });
 
+ Route::post('/pessoas/postarUpload',
+            [
+                'as'    =>  'artista.postarUpload',
+                'uses'  =>  'ArtistaController@postarUpload'
+            ]);
+ 
 
 Route::filter('autenticacao', function() {
     if (Auth::guest()) return Redirect::action('LoginController@login');
@@ -78,6 +84,59 @@ Route::group(array('prefix' => 'admin', 'before' => 'autenticacao'), function()
             [
                 'as'    =>  'menus.deletar',
                 'uses'  =>  'MenusController@deletar'
+            ]);
+
+    //Tipo Pessoas
+    
+    Route::get(
+            'tipo_contato/criar',
+            [
+                'as'    =>  'tipo_contato.criar',
+                'uses'  =>  'TipoContatoController@criar'
+            ]);
+
+    Route::post(
+            'tipo_contato/',
+            [
+                'as'    =>  'tipo_contato.salvar',
+                'uses'  =>  'TipoContatoController@salvar'
+            ]);
+
+    Route::get(
+            'tipo_contato/',
+             [
+                'as'    =>  'tipo_contato.listar',
+                'uses'  =>  'TipoContatoController@listar'
+            ]);
+
+    Route::get(
+            'tipo_contato/{id}',
+            [
+                'as'    =>  'tipo_contato.exibir',
+                'uses'  =>  'TipoContatoController@exibir'
+            ]);
+
+    Route::get(
+            'tipo_contato/{id}/editar', 
+            [
+                'as'    =>  'tipo_contato.editar',
+                'uses'  =>  'TipoContatoController@editar'
+            ]);
+
+
+    Route::match(
+            ['PUT'],
+            'tipo_contato/{id}',
+            [
+                'as'    =>  'tipo_contato.alterar',
+                'uses'  =>  'TipoContatoController@alterar'
+            ]);
+
+    Route::get(
+            'tipo_contato/{id}/deletar', 
+            [
+                'as'    =>  'tipo_contato.deletar',
+                'uses'  =>  'TipoContatoController@deletar'
             ]);
 
     //Tipo Pessoas

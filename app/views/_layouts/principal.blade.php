@@ -8,6 +8,10 @@
     {{ HTML::style('assets/font-awesome/css/font-awesome.min.css') }}
     {{ HTML::style('assets/select/select2.css') }}
     {{ HTML::style('assets/select/select2-bootstrap.css') }}
+    {{ HTML::style('assets/dropzone/dropzone.css') }}
+    {{ HTML::script('assets/jquery/jquery-2.1.1.min.js') }}
+    {{ HTML::script('assets/dropzone/dropzone.js') }}
+
 
    
     <style>
@@ -68,7 +72,7 @@
     </div>
 </div>
     
-    {{ HTML::script('assets/jquery/jquery-2.1.1.min.js') }}
+    
     {{ HTML::script('assets/bootstrap/js/bootstrap.min.js') }}
     {{ HTML::script('assets/select/select2.min.js') }}
     {{ HTML::script('assets/select/select2_locale_pt-BR.js') }}
@@ -81,7 +85,7 @@
         });
 
         $('#alertas').delay(800).fadeOut('slow');
-        $("select").select2();
+        $("select").click();
         
         $(document).on('click','.addElement', function(){
             var clone = $(this).parent().parent().clone().insertAfter($(this).parent().parent());

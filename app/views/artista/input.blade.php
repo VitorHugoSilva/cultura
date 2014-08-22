@@ -4,7 +4,7 @@
     type?          type do input (text, number, email)
     placeholder?   o atributo placeholder do campo
 --}}
-@if($categoria == 'first')
+@if($categoria == 'first' || $categoria == 'first-last')
  <div class="panel panel-default">
      <div class="panel-heading"> 
             @if($acrescentavel_por_categoria == 'true')
@@ -16,12 +16,38 @@
         </div>
         <div class="panel-body">
 @endif
-<div class="form-group form-group @if( $errors->count() ) @if($errors->has($name)) has-error @else has-success @endif has-feedback @endif">
+<div class="form-group @if( $errors->count() ) @if($errors->has($name)) has-error @else has-success @endif has-feedback @endif">
     {{ Form::label($name, isset($label) ? $label : ucfirst($name), ['class' => 'col-sm-2 control-label']) }}
-    <div class="@if($acrescentavel == 'true' || $acrescentavel_por_categoria == 'true')col-sm-7<?php $name = $name . '[]'?>@else col-sm-10 @endif">
+    <div class="@if($acrescentavel == 'true')col-sm-7<?php $name = $name . '[]'?>@else col-sm-10 @endif @if($acrescentavel_por_categoria == 'true')<?php $name = $name . '[]'?>@endif">
         @if($type === 'file')
             {{  Form::file(
-                $name, ['class' => 'form-control'])
+                "file", ['class' => 'form-control'], 'multiple')
+            }}
+            <div class="dzpreviewcustom dropzone"></div>
+            <script type="text/javascript">
+              $("input[name=file]").dropzone({ 
+                  maxFiles: 5,
+                  paramName:  "file",
+                  maxFilesize: 20, //mb
+//                  autoProcessQueue: false,// cancela ajax
+                  addRemoveLinks: true,
+                  dictMaxFilesExceeded : "Limite de Arquivos atingido!",
+                  dictInvalidFileType: "Formato não aceito!",
+                  autoDiscover: false,
+                  clickable: true,
+                  previewsContainer: ".dzpreviewcustom",
+                  url: "{{ URL::action(Meta::getController() . '@' . 'postarUpload') }}"
+              });
+            </script>
+        @elseif($type === 'radio')
+        Sim
+            {{
+                Form::radio($name, 't', false)
+            }}
+        Não
+            {{
+                Form::radio(
+                $name, 'f',  false)
             }}
         @elseif($type === 'longtext')
             {{
@@ -29,8 +55,13 @@
             }}
         @elseif($type === 'select')
             <?php list($model, $data_field) = explode('.', $name);  ?>
+        @if($acrescentavel == 'true' || $acrescentavel_por_categoria == 'true')
+            <?php $name = strtolower($model) . '_id[]'; ?>
+        @else
+            <?php $name = strtolower($model) . '_id'; ?>
+        @endif
             {{  Form::select(
-                    strtolower($model) . '_id',
+                    $name,
                     $model::options(),
                     null,
                     [
@@ -68,7 +99,7 @@
         </div>
         @endif
 </div>
-@if($categoria == 'last')
+@if($categoria == 'last' || $categoria == 'first-last')
 </div>
  </div>
 @endif

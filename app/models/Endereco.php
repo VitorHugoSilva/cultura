@@ -2,7 +2,7 @@
 
 class Endereco extends BaseModel
 {
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'pessoa_id'];
     protected $table = 'enderecos';
     public static $rules = [
         'estado_endereco' => 'required|regex:/^(\w?\s?\d?)+$/u',
@@ -10,17 +10,9 @@ class Endereco extends BaseModel
         'bairro_endereco' => 'required|regex:/^(\w?\s?\d?)+$/u',
         'endereco'        => 'required',
         'numero'          => 'required|integer',
-        'cep'             => 'required|integer'
+        'cep'             => 'required|integer',
+        'pessoa_id'       => 'required|integer'
     ];
-
-
-    public function beforeValidate()
-    {
-        if (Endereco::whereEnderecoAndPessoaId($this->endereco, $this->cidade_id)->notThis()->count()) {
-            $this->errors()->add('endereco', 'Endereço Duplicado!');
-            return false;
-        }
-    }
 
     public function pessoa()
     {

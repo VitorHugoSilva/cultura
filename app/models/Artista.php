@@ -8,14 +8,16 @@ class Artista extends BaseModel
     protected $table = 'pessoas';
 
     public static $rules = [
-        'nome' => 'required|max:40|unique:pessoas'
+        'nome'                  => 'required|alpha_num|max:40|unique:pessoas',
+//        'data_nascimento'       => 'required|date_format:H\\:i',
     ];
 
     public static $meta = [
-        'nome'                  =>  'text|Nome|Informe seu Nome|false|first|true|Apresentação',
+        'nome'                  =>  'text|Nome|Informe seu Nome|false|first|false|Apresentação',
         'nome_artistico'        =>  'text|Nome Artístico| Você possui nome artístico?|false|last|false|',
-        'inscricao_estadual'    =>  'text|Inscrição Estadual| Inscrição estadual|false|first|true|Dados Gerais',
-        'inscricao_municipal'   =>  'text|Inscrição municipal|Inscrição municipal|false|null|true|',
+        'foto'                  =>  'file|Foto|Foto|false|first-last|false|Fotos',
+        'inscricao_estadual'    =>  'text|Inscrição Estadual| Inscrição estadual|false|first|false|Dados Gerais',
+        'inscricao_municipal'   =>  'text|Inscrição municipal|Inscrição municipal|false|null|false|',
         'razao_social'          =>  'text|Razão Social| Razão Social|false|null|false|',
         'nome_fantasia'         =>  'text|Nome Fantasia| Nome Fantasia|false|null|false|',
         'cpf_responsavel'       =>  'text|CPF do Responsável| CPF do responsável|false|null|false|',
@@ -25,16 +27,16 @@ class Artista extends BaseModel
         'cnpj'                  =>  'text|CNPJ|CNPJ da empresa | Identidade|false|null|false|',
         'data_nascimento'       =>  'text|Data de Nascimento| Data de nascimento|false|last|false|',
         'estado_endereco'       =>  'text|Estado|Estado|false|first|true|Endereços',
-        'cidade_endereco'       =>  'text|Cidade|Cidade|false|3|false|',
-        'bairro_endereco'       =>  'text|Bairro|Bairro|false|3|false|',
-        'endereco'              =>  'text|Endereco|Endereco|false|3|false|',
-        'numero'                =>  'text|Numero|Numero|false|3|false|',
-        'cep'                   =>  'text|CEP|CEP|false|3|false|',
-        'complemento'           =>  'text|Complemento|Complemento|false|last|false|',
+        'cidade_endereco'       =>  'text|Cidade|Cidade|false|3|true|',
+        'bairro_endereco'       =>  'text|Bairro|Bairro|false|3|true|',
+        'endereco'              =>  'text|Endereco|Endereco|false|3|true|',
+        'numero'                =>  'text|Numero|Numero|false|3|true|',
+        'cep'                   =>  'text|CEP|CEP|false|3|true|',
+        'complemento'           =>  'text|Complemento|Complemento|false|last|true|',
         'contato_nome'          =>  'text|Contato|Contato|false|first|true|Contatos',
-        'tipo_contato'          =>  'text|Tipo Contato|Tipo Contato|false|last|false|',
-        'possui_cadastro_siniic'=>  'text| Possui cadastro no Siniic | Identidade|false|5|false|',
-        'apresentacao'          =>  'longtext|Breve Apresentação | Identidade|false|first|true|',
+        'ContatoTipo.nome'      =>  'select|Tipo Contato|Tipo Contato|true|last|true|',
+        'possui_cadastro_siniic'=>  'radio| Possui cadastro no Siniic | Identidade|false|first|false|Observações',
+        'apresentacao'          =>  'longtext|Breve Apresentação | Identidade|false|false|false|',
         'historico'             =>  'longtext|Breve Histórico | Identidade|false|5|false|',
         'portfolio'             =>  'longtext|Portfólio | Identidade|false|5|false|',
         'necessidade_tecnica'   =>  'longtext|Necessidades Técnicas | Identidade|false|5|false|',
