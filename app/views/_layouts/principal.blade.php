@@ -85,7 +85,7 @@
         });
 
         $('#alertas').delay(800).fadeOut('slow');
-        $("select").click();
+        $("select").select2();
         
         $(document).on('click','.addElement', function(){
             var clone = $(this).parent().parent().clone().insertAfter($(this).parent().parent());

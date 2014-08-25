@@ -35,12 +35,13 @@ class Artista extends BaseModel
         'complemento'           =>  'text|Complemento|Complemento|false|last|true|',
         'contato_nome'          =>  'text|Contato|Contato|false|first|true|Contatos',
         'ContatoTipo.nome'      =>  'select|Tipo Contato|Tipo Contato|true|last|true|',
-        'possui_cadastro_siniic'=>  'radio| Possui cadastro no Siniic | Identidade|false|first|false|Observações',
-        'apresentacao'          =>  'longtext|Breve Apresentação | Identidade|false|false|false|',
-        'historico'             =>  'longtext|Breve Histórico | Identidade|false|5|false|',
-        'portfolio'             =>  'longtext|Portfólio | Identidade|false|5|false|',
-        'necessidade_tecnica'   =>  'longtext|Necessidades Técnicas | Identidade|false|5|false|',
-        'valor_pretendido'      =>  'money|Valor pretendido | Identidade|false|falst|false|'
+        'possui_cadastro_siniic'=>  'radio| Possui cadastro no Siniic ||false|first|false|Observações',
+        'apresentacao'          =>  'longtext|Breve Apresentação ||false|false|false|',
+        'historico'             =>  'longtext|Breve Histórico ||false|5|false|',
+        'portfolio'             =>  'longtext|Portfólio ||false|5|false|',
+        'necessidade_tecnica'   =>  'longtext|Necessidades Técnicas ||false|5|false|',
+        'valor_pretendido'      =>  'money|Valor pretendido | Valor pretendido|false|falst|false|',
+        'AreaRepresentacao.nome'  =>  'select|Segmento Cultural|Segmento Cultural|false||false|'
     ];
     
     public static function meta()

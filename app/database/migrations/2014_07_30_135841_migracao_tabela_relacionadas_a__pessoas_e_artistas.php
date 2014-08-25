@@ -139,18 +139,19 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
      */
     public function down()
     {
-        Schema::drop('pessoas');		
-	Schema::drop('enderecos');
-	Schema::drop('contatos_tipos');
+
         Schema::drop('contatos');
+        Schema::drop('contatos_tipos');
         Schema::drop('integrantes');
-        Schema::drop('pessoas_tipos');
         Schema::drop('grupos');
-        Schema::drop('area_representacao');
         Schema::drop('pessoas_segmentos');
-        Schema::drop('arquivos_tipos');
+        Schema::drop('segmentos_culturais');
+        Schema::drop('area_representacao');
         Schema::drop('arquivos');
-        
+        Schema::drop('enderecos');
+        Schema::drop('arquivos_tipos');
+        Schema::drop('pessoas');
+        Schema::drop('pessoas_tipos');
     }
 
 }
