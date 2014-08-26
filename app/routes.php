@@ -11,6 +11,10 @@ Route::group(array('prefix' => 'entrada'), function()
     Route::get('logout', array('uses' => 'LoginController@logout'));
 });
 
+  Route::get('/segmentos_culturais/por-area/{id}',
+            [
+                'uses'  =>  'SegmentosCulturaisController@porArea'
+            ]);
  Route::post('/pessoas/postarUpload',
             [
                 'as'    =>  'artista.postarUpload',

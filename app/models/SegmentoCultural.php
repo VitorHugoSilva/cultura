@@ -25,7 +25,7 @@ class SegmentoCultural extends BaseModel
     }
     public function arearepresentacao()
     {
-        return $this->belongsTo('AreaRepresentacao');
+        return $this->belongsTo('AreaRepresentacao', 'arearepresentacao_id');
     }
      public static function options()
     {

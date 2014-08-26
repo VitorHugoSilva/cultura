@@ -22,6 +22,9 @@ class AreaRepresentacao extends BaseModel
         }
     }
     
+    public function segmentos(){
+        return $this->hasMany('SegmentoCultural', 'arearepresentacao_id');
+    }
     public static function options()
     {
         return static::orderBy('nome')->lists('nome', 'id');

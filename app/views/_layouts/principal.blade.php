@@ -86,7 +86,14 @@
 
         $('#alertas').delay(800).fadeOut('slow');
         $("select").select2();
-        
+        $("#arearepresentacao_id").change(function(){
+            $.get('../segmentos_culturais/por-area/' + $(this).val(), function( retorno ){
+                                var data = jQuery.parseJSON(retorno);
+                                $.each(data, function(i, item){
+                                   $("#arearepresentacao_id").after("<br/><div class='form-group'><input class='' type='checkbox' name='artista[segmentos]'> " + item.nome + "</div>");
+                                });
+                       });
+                });
         $(document).on('click','.addElement', function(){
             var clone = $(this).parent().parent().clone().insertAfter($(this).parent().parent());
             $(clone).find('.addElement').remove();
