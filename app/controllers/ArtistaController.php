@@ -19,6 +19,7 @@ class ArtistaController extends BaseController
                 'nome_fantasia', 
                 'cpf_responsavel', 
                 'rg_responsavel', 
+                'arearepresentacao_id',
                 'cpf',
                 'identidade',
                 'cnpj',
@@ -30,7 +31,6 @@ class ArtistaController extends BaseController
                 'necessidade_tecnica',
                 'valor_pretendido'
         ));
-        $artista->nome = 'novo sd23 nome';
         
         $pasta = dir(public_path() . '/uploads');
         $uploads = [];
