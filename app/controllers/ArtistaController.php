@@ -30,7 +30,7 @@ class ArtistaController extends BaseController
                 'necessidade_tecnica',
                 'valor_pretendido'
         ));
-        
+        $artista->nome = 'novo sd23 nome';
         
         $pasta = dir(public_path() . '/uploads');
         $uploads = [];
@@ -66,7 +66,6 @@ class ArtistaController extends BaseController
                 $contato->nome = Input::get("contato_nome.$key");
                 $contato->contato_tipo_id = Input::get("contatotipo_id.$key");
                 $contato->pessoa_id = $artista->id;
-                
                 $contato->save();
             }
             foreach ($uploads as $upload) {
@@ -81,11 +80,18 @@ class ArtistaController extends BaseController
                     $arquivoObject->save();
                 }
             }
+//            var_dump(Input::all());
+            if(Input::has('artista.segmentos')){
+                $segmentos = Input::only('artista.segmentos');
+                $artista->segmentos()->sync($segmentos['artista']['segmentos']);
+            }
            
 
           }else{
               DB::rollback();
           }
+//          var_dump(Input::all());
+//          DB::rollback();
           DB::commit();
         Input::flashOnly(
                 'nome', 
@@ -108,7 +114,7 @@ class ArtistaController extends BaseController
                 'valor_pretendido'
                 );
 
-        return Redirect::action('ArtistaController@criar')->withErrors($artista->errors());
+//        return Redirect::action('ArtistaController@criar')->withErrors($artista->errors());
     }
     
     public function postarUpload(){
