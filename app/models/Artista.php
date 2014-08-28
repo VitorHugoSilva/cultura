@@ -8,8 +8,6 @@ class Artista extends BaseModel
     protected $table = 'pessoas';
 
     public static $rules = [
-        'nome'                  => 'required|alpha_num|max:40|unique:pessoas',
-//        'data_nascimento'       => 'required|date_format:H\\:i',
     ];
 
     public static $meta = [
@@ -55,5 +53,10 @@ class Artista extends BaseModel
         }
 
         return $metadata;
+    }
+    
+    public function segmentos()
+    {
+        return $this->belongsToMany('SegmentoCultural');
     }
 }

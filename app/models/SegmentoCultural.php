@@ -27,6 +27,10 @@ class SegmentoCultural extends BaseModel
     {
         return $this->belongsTo('AreaRepresentacao', 'arearepresentacao_id');
     }
+    public function artistas()
+    {
+        return $this->belongsToMany('Artista');
+    }
      public static function options()
     {
         return static::orderBy('nome')->lists('nome', 'id');

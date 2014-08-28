@@ -26,7 +26,7 @@
             <div class="dzpreviewcustom dropzone"></div>
             <script type="text/javascript">
               $("input[name=file]").dropzone({ 
-                  maxFiles: 5,
+                  maxFiles: @if($name == 'foto') {{'1'}} @else {{'5'}} @endif,
                   paramName:  "file",
                   maxFilesize: 20, //mb
 //                  autoProcessQueue: false,// cancela ajax

@@ -90,7 +90,8 @@
             $.get('../segmentos_culturais/por-area/' + $(this).val(), function( retorno ){
                                 var data = jQuery.parseJSON(retorno);
                                 $.each(data, function(i, item){
-                                   $("#arearepresentacao_id").after("<br/><div class='form-group'><input class='' type='checkbox' name='artista[segmentos]'> " + item.nome + "</div>");
+                                    console.log(item);
+                                   $("#arearepresentacao_id").after("<br/><div class='form-group'><input class='' type='checkbox' value='" + item.id +"' name=\"artista[segmentos][]\"> " + item.nome + "</div>");
                                 });
                        });
                 });
