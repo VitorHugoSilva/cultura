@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('MenusTableSeeder');
         $this->call('ArquivosTiposSeeder');
         $this->call('AreaRepresentacaoSeeder');
+        $this->call('TipoContatoSeeder');
 	}
 
 }
