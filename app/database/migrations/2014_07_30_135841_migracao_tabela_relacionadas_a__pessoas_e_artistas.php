@@ -14,7 +14,7 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
     {
         Schema::create('pessoas', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('nome')->unique();
+            $table->string('nome');
             $table->string('nome_artistico')->nullable;
             $table->string('inscricao_estadual')->nullable;
             $table->string('inscricao_municipal')->nullable;
@@ -105,13 +105,12 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
         });
 
         
-        Schema::create('pessoas_segmentos', function(Blueprint $table) {
+        Schema::create('artista_segmento_cultural', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('pessoa_id')->unsigned();
-            $table->foreign('pessoa_id')->references('id')->on('pessoas');
-            $table->integer('segmentocultural_id')->unsigned();
-            $table->foreign('segmentocultural_id')->references('id')->on('segmentos_culturais');
-            $table->timestamps();
+            $table->integer('artista_id')->unsigned();
+            $table->foreign('artista_id')->references('id')->on('pessoas');
+            $table->integer('segmento_cultural_id')->unsigned();
+            $table->foreign('segmento_cultural_id')->references('id')->on('segmentos_culturais');
         });
         
         Schema::create('arquivos_tipos', function(Blueprint $table) {
@@ -126,7 +125,7 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
             $table->integer('arquivo_tipo_id')->unsigned();
-            $table->foreign('arquivo_tipo_id')->references('id')->on('arquivos_tipos');
+            $table->foreign('arquivo_tipo_id')->references('id')->on('arquivos_tipos')->nullable;
             $table->timestamps();
         });
         
@@ -144,7 +143,7 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
         Schema::drop('contatos_tipos');
         Schema::drop('integrantes');
         Schema::drop('grupos');
-        Schema::drop('pessoas_segmentos');
+        Schema::drop('artista_segmento_cultural');
         Schema::drop('segmentos_culturais');
         Schema::drop('area_representacao');
         Schema::drop('arquivos');
