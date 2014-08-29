@@ -12,9 +12,17 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
      */
     public function up()
     {
+        Schema::create('area_representacao', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('nome', 150)->unique();
+            $table->timestamps();
+        });
+        
         Schema::create('pessoas', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->integer('arearepresentacao_id')->unsigned();
+            $table->foreign('arearepresentacao_id')->references('id')->on('area_representacao')->nullable;
             $table->string('nome_artistico')->nullable;
             $table->string('inscricao_estadual')->nullable;
             $table->string('inscricao_municipal')->nullable;
@@ -88,11 +96,6 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
         });                
 
        
-        Schema::create('area_representacao', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('nome', 150)->unique();
-            $table->timestamps();
-        });
         
         
         
@@ -124,7 +127,7 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
             $table->binary('arquivo')->nullable;
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
-            $table->integer('arquivo_tipo_id')->unsigned();
+            $table->integer('arquivo_tipo_id')->unsigned()->nullable;
             $table->foreign('arquivo_tipo_id')->references('id')->on('arquivos_tipos')->nullable;
             $table->timestamps();
         });
@@ -145,12 +148,12 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
         Schema::drop('grupos');
         Schema::drop('artista_segmento_cultural');
         Schema::drop('segmentos_culturais');
-        Schema::drop('area_representacao');
         Schema::drop('arquivos');
         Schema::drop('enderecos');
         Schema::drop('arquivos_tipos');
         Schema::drop('pessoas');
         Schema::drop('pessoas_tipos');
+        Schema::drop('area_representacao');
     }
 
 }

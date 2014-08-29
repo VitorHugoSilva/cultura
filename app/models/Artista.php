@@ -59,4 +59,12 @@ class Artista extends BaseModel
     {
         return $this->belongsToMany('SegmentoCultural');
     }
+    public function arearepresentacao()
+    {
+        return $this->belongsTo('AreaRepresentacao');  
+    }
+    public function arquivos()
+    {
+        return $this->hasMany('Arquivo', 'pessoa_id');
+    }
 }

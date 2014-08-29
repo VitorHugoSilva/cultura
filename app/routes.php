@@ -28,6 +28,7 @@ Route::filter('autenticacao', function() {
 
 Route::group(array('prefix' => 'admin', 'before' => 'autenticacao'), function()
 {
+    Route::get('/carteirinha/{id} ', 'CarteirinhaController@emitirCarteirinha');
     Route::get('/', 'InicioAdministracaoController@listar');
     Route::get('/pessoas', [
                 'as'    =>  'artista.criar',
