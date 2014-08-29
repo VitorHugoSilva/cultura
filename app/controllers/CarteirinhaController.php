@@ -12,6 +12,7 @@ class CarteirinhaController extends ResourceController
         $cod_identificacao = str_pad($artista->arearepresentacao->id, 2, '0', STR_PAD_LEFT) . str_pad($artista->id, 6, '0', STR_PAD_LEFT) . '/' . (new DateTime())->format('Y');
         $cpf = $artista->cpf;
         $data_nascimento = (new DateTime($artista->data_nascimento))->format('d/m/Y');
+        $arearepresentacao = $artista->arearepresentacao->nome;
         #Atrás
         $artista = Artista::find($id);
 
@@ -21,7 +22,8 @@ class CarteirinhaController extends ResourceController
             'nome_artistico' => $nome_artistico,
             'cod_identificacao' => $cod_identificacao,
             'cpf' => $cpf,
-            'data_nascimento' => $data_nascimento
+            'data_nascimento' => $data_nascimento,
+            'arearepresentacao' => $arearepresentacao
             ]);
     }
 }

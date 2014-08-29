@@ -34,17 +34,17 @@ class ArtistaController extends BaseController
         
         $pasta = dir(public_path() . '/uploads');
         $uploads = [];
+        $teste;
             while($arquivo = $pasta->read()){
                 if(Illuminate\Support\Str::contains($arquivo, Cookie::get('laravel_session'))){
                     $upload = new \stdClass;
                     $upload->nome = $arquivo;
                     $upload->path_completo = $pasta->path . '/' . $arquivo;
-                    $upload->conteudo_arquivo =  file_get_contents($upload->path_completo);
+                    $upload->conteudo_arquivo =  base64_encode((file_get_contents($upload->path_completo)));
                     File::delete($upload->path_completo);
                     $uploads[] = $upload;
                 }
             }
-            
         if ($artista->save()) {
             foreach(Input::get('endereco') as $key => $value){
                 $enderecoObject = new Endereco();
@@ -73,10 +73,9 @@ class ArtistaController extends BaseController
                 if(Illuminate\Support\Str::contains($upload->nome, Cookie::get('laravel_session'))){
                     $arquivoObject = new Arquivo();
                     $arquivoObject->nome = substr($upload->nome, (strpos($upload->nome, '-')+1));
-                    $arquivoObject->arquivo = utf8_encode($upload->conteudo_arquivo);
+                    $arquivoObject->arquivo = $upload->conteudo_arquivo;
                     $arquivoObject->arquivo_tipo_id = 1; 
                     $arquivoObject->pessoa_id = $artista->id;
-                    
                     $arquivoObject->save();
                 }
             }

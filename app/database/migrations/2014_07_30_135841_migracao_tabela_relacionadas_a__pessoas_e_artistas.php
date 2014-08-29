@@ -124,7 +124,7 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
         Schema::create('arquivos', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 150)->unique();
-            $table->binary('arquivo')->nullable;
+            $table->text('arquivo')->nullable;
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
             $table->integer('arquivo_tipo_id')->unsigned()->nullable;
