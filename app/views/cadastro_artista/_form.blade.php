@@ -1,6 +1,8 @@
 {{ Form::model('', ['route' => $route, 'method' => $method]) }}
 
-  
+
+
+
     <div class="form-group pessoa-fisica">
         {{ Form::label('foto', 'Foto') }}
         {{ Form::file('foto',null, ['class' => 'form-control']) }}

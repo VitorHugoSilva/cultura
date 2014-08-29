@@ -116,7 +116,29 @@
             $(this).parent().parent().parent().remove();
             
         });
-    });   
+     
+
+    }); 
+     $(document).on('click','#btn_pessoa_fisica', function(){
+        $('#razao_social').parent().parent().hide();
+        $('#cnpj').parent().parent().hide();
+        $('#nome_fantasia').parent().parent().hide();
+        $('#inscricao_estadual').parent().parent().hide();
+        $('#inscricao_municipal').parent().parent().hide();
+        $('#cpf').parent().parent().show();
+        $('#data_nascimento').parent().parent().show();
+
+     });
+     $(document).on('click','#btn_pessoa_juridica', function(){
+        $('#razao_social').parent().parent().show();
+        $('#cnpj').parent().parent().show();
+        $('#nome_fantasia').parent().parent().show();
+        $('#inscricao_estadual').parent().parent().show();
+        $('#inscricao_municipal').parent().parent().show();
+        $('#cpf').parent().parent().hide();
+        $('#data_nascimento').parent().parent().hide();
+        
+    });
     </script>
 
 </body>
