@@ -10,6 +10,7 @@
     {{ HTML::style('assets/select/select2-bootstrap.css') }}
     {{ HTML::style('assets/dropzone/dropzone.css') }}
     {{ HTML::script('assets/jquery/jquery-2.1.1.min.js') }}
+    {{ HTML::script('assets/jquery-mask/jquery-mask.js') }}
     {{ HTML::script('assets/dropzone/dropzone.js') }}
 
 
@@ -80,6 +81,7 @@
     <script type="text/javascript">
     $(document).ready(function(){
         $(".alert").alert();
+        $(".monetario").mask('000.000.000.000.000,00', {reverse: true});
         $("#btn-acao-submit").click(function(){
             $('#conteudo form').submit();
         });

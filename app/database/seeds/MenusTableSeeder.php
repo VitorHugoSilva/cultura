@@ -26,6 +26,16 @@ class MenusTableSeeder extends Seeder
         ]);
 
         Menu::create([
+                'nome'      =>  'Relação de Artistas',
+                'menu_id'   =>  $menu->id,
+                'url'       =>  'admin/pessoas/listar',
+                'descricao' =>  'Relação de artistas',
+                'ordem'     =>  '2',
+                'ativo'     =>   1,
+                'icone'     =>  'preencher depois'
+        ]);
+
+        Menu::create([
                 'nome'      =>  'Grupos',
                 'menu_id'   =>  $menu->id,
                 'url'       =>  'admin/grupos',

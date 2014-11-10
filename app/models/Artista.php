@@ -8,12 +8,17 @@ class Artista extends BaseModel
     protected $table = 'pessoas';
 
     public static $rules = [
+        'data_nascimento'   =>  'required|regex:/^\d{4}-\d{1,2}-\d{1,2}$/',
+        'nome'              =>  'required',
+        'nome_artistico'    =>  'required',
+        'possui_cadastro_siniic'    =>  'required'
     ];
 
     public static $meta = [
         'nome'                  =>  'text|Nome|Informe seu Nome|false|first|false|Apresentação',
         'nome_artistico'        =>  'text|Nome Artístico| Você possui nome artístico?|false|last|false|',
         'foto'                  =>  'file|Foto|Foto|false|first-last|false|Fotos',
+        'materiais'             =>  'materiais|Materiais|Materiais|false|first-last|false|Materiais',
         'inscricao_estadual'    =>  'text|Inscrição Estadual| Inscrição estadual|false|first|false|Dados Gerais',
         'inscricao_municipal'   =>  'text|Inscrição municipal|Inscrição municipal|false|null|false|',
         'razao_social'          =>  'text|Razão Social| Razão Social|false|null|false|',
@@ -23,7 +28,7 @@ class Artista extends BaseModel
         'cpf'                   =>  'text|CPF| Informe seu CPF|false|null|false|',
         'identidade'            =>  'text|Identidade| Identidade|false|null|false|',
         'cnpj'                  =>  'text|CNPJ|CNPJ da empresa | Identidade|false|null|false|',
-        'data_nascimento'       =>  'text|Data de Nascimento| Data de nascimento|false|last|false|',
+        'data_nascimento'       =>  'date|Data de Nascimento| Data de nascimento|false|last|false|',
         'estado_endereco'       =>  'text|Estado|Estado|false|first|true|Endereços',
         'cidade_endereco'       =>  'text|Cidade|Cidade|false|3|true|',
         'bairro_endereco'       =>  'text|Bairro|Bairro|false|3|true|',
@@ -38,7 +43,7 @@ class Artista extends BaseModel
         'historico'             =>  'longtext|Breve Histórico ||false|5|false|',
         'portfolio'             =>  'longtext|Portfólio ||false|5|false|',
         'necessidade_tecnica'   =>  'longtext|Necessidades Técnicas ||false|5|false|',
-        'valor_pretendido'      =>  'money|Valor pretendido | Valor pretendido|false|falst|false|',
+        'valor_pretendido'      =>  'monetario|Valor pretendido | Valor pretendido|false|falst|false|',
         'AreaRepresentacao.nome'  =>  'select|Segmento Cultural|Segmento Cultural|false||false|'
     ];
     
@@ -66,5 +71,10 @@ class Artista extends BaseModel
     public function arquivos()
     {
         return $this->hasMany('Arquivo', 'pessoa_id');
+    }
+
+    public static function search($termo)
+    {
+        return parent::search($termo)->orderBy('nome');
     }
 }

@@ -1,9 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Careira</title>
-    <style>
-       body
+@extends('_layouts.principal')
+
+@section('acoes-da-pagina')
+    <div class="pull-right">
+    <a class="btn btn-success" title="Clique aqui para cadastrar um novo" href="{{URL::action('CarteirinhaController@emitirCarteirinha',[$id])}}">
+    <i class="fa fa-arrow-circle-o-right"></i> Ver Frente
+    </a>
+    <div class="btn-group">
+    <a class="btn btn-default" href="{{ URL::action('ArtistaController@listar') }}">
+        <i class="fa fa-arrow-left"></i> Voltar
+    </a>
+</div>
+    </div>
+@stop
+
+@section('conteudo')
+<style>
+       .bordapagina
           {
               font-family: arial;
               font-size:9px;
@@ -118,7 +130,7 @@
              width:295px;
              height:175px;
              background-color:#FFFFFF;
-             border:2px solid #000000;
+             border:1px solid #000000;
          //     padding:10px 10px 14px;
            
          //    overflow:hidden;
@@ -153,18 +165,16 @@
 
    }
    </style>
-</head>
-<body>
 <div class='bordapagina'>
         {{ HTML::image('imagens/fundo-carteira-costa.jpg', 'fundo',['class'=>'imagem_fundo']) }}
         <div class="dadospessais">
             <!--# DADOS PESSOAS-->
                
-                   <div class="posicionamenoto_data_validade"> 00/00/0000</div>
+                   <div class="posicionamenoto_data_validade"> {{$validade}}</div>
                </div>
         </div>
     
     </div>
 
-</body>
-</html>
+@stop
+

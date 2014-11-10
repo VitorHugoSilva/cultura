@@ -3,9 +3,30 @@
 class ArtistaController extends BaseController
 {
     //2014-08-20 23:46:14.844-03
+    protected static $pagination = 15;
+    protected static $model = 'Artista';
     public function criar(){
-        return View::make(Meta::getControllerSlug() . '.listar',[
+        $pasta = dir(public_path() . '/uploads');
+            while($arquivo = $pasta->read()){
+                if(Illuminate\Support\Str::contains($arquivo, Cookie::get('laravel_session'))){
+                    $upload = new \stdClass;
+                    $upload->nome = $arquivo;
+                    $upload->path_completo = $pasta->path . '/' . $arquivo;
+                    $upload->conteudo_arquivo =  base64_encode((file_get_contents($upload->path_completo)));
+                    File::delete($upload->path_completo);
+                }
+            }
+        return View::make(Meta::getControllerSlug() . '.criar',[
             'artista' => new Artista()
+        ]);
+    }
+
+    public function listar(){
+        $query = call_user_func(static::$model . '::search', Input::get('pesquisa', null));
+        Input::flash();
+
+        return View::make(Meta::getControllerSlug() . '.listar',[
+             'models' =>  $query->paginate(static::$pagination)
         ]);
     }
     public function salvar(){
@@ -34,7 +55,6 @@ class ArtistaController extends BaseController
         
         $pasta = dir(public_path() . '/uploads');
         $uploads = [];
-        $teste;
             while($arquivo = $pasta->read()){
                 if(Illuminate\Support\Str::contains($arquivo, Cookie::get('laravel_session'))){
                     $upload = new \stdClass;
@@ -72,9 +92,18 @@ class ArtistaController extends BaseController
                 
                 if(Illuminate\Support\Str::contains($upload->nome, Cookie::get('laravel_session'))){
                     $arquivoObject = new Arquivo();
-                    $arquivoObject->nome = substr($upload->nome, (strpos($upload->nome, '-')+1));
+                    $nomeArquivo = substr($upload->nome, (strpos($upload->nome, '-')+1));
+                    if(strpos($nomeArquivo, 'foto_laravel_') !== false)
+                    {
+                        $nomeArquivo = str_replace('foto_laravel_', '', $nomeArquivo);
+                        $arquivoObject->arquivo_tipo_id = 1;
+                    }else{
+                        $nomeArquivo = str_replace('material_laravel_', '', $nomeArquivo);
+                        $arquivoObject->arquivo_tipo_id = 2;
+                    }
+                    $arquivoObject->nome = $nomeArquivo;
                     $arquivoObject->arquivo = $upload->conteudo_arquivo;
-                    $arquivoObject->arquivo_tipo_id = 1; 
+                    
                     $arquivoObject->pessoa_id = $artista->id;
                     $arquivoObject->save();
                 }
@@ -109,19 +138,23 @@ class ArtistaController extends BaseController
                 'apresentacao',
                 'historico',
                 'portfolio',
-                'necessidade_tecnica',
-                'valor_pretendido'
+                'necessidade_tecnica'
                 );
 
-//        return Redirect::action('ArtistaController@criar')->withErrors($artista->errors());
+       return Redirect::action('ArtistaController@criar')->withErrors($artista->errors());
     }
     
     public function postarUpload(){
-        $imagem = Input::file('file');
-        $nome_original = Input::file('file')->getClientOriginalName();
-            $rules =[
-                'file' =>'image|max:10000',
-            ];
+        if(Input::file('file')){
+            $imagem = Input::file('file');    
+            $nomeadicional  =  'foto_laravel';
+        }else{
+            $imagem = Input::file('materiais');
+            $nomeadicional = 'material_laravel';
+        }
+        
+        $nome_original = $imagem->getClientOriginalName();
+
 //            $validacao = Validator::make($imagem, $rules);
 //            
 //            if($validacao->fails()){
@@ -129,8 +162,8 @@ class ArtistaController extends BaseController
 //            }
             
         $destino = public_path() . '/uploads';
-        $arquivo = Cookie::get('laravel_session') . time() .  '-' . $nome_original;
-        $upload_success = Input::file('file')->move($destino, $arquivo);
+        $arquivo = Cookie::get('laravel_session') . time() .  '-' . $nomeadicional. '_' . $nome_original;
+        $upload_success = $imagem->move($destino, $arquivo);
 
         if( $upload_success ) {
         return Response::json('success', 200);

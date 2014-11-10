@@ -16,7 +16,8 @@ class CarteirinhaController extends ResourceController
         #Atrás
         $artista = Artista::find($id);
 
-        return View::make('carteirinha.emitir')->with([
+        return View::make('artista.carteirinha_frente')->with([
+            'id'    =>  $id,
             'foto' =>  $foto,
             'nome' => $nome,
             'nome_artistico' => $nome_artistico,
@@ -24,6 +25,14 @@ class CarteirinhaController extends ResourceController
             'cpf' => $cpf,
             'data_nascimento' => $data_nascimento,
             'arearepresentacao' => $arearepresentacao
+            ]);
+    }
+
+    public function emitirCarteirinhaCosta($id){
+        $validade =  (new DateTime())->format('Y') . '/' . (new DateTime())->modify('1 year')->format('Y');
+        return View::make('artista.carteirinha_costas')->with([
+            'validade'  =>  $validade,
+            'id'        =>  $id
             ]);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 Route::pattern('id', '[0-9]+');
 
-Route::get('/', 'ArtistaController@criar');
+// Route::get('/', 'ArtistaController@criar');
 
 Route::group(array('prefix' => 'entrada'), function()
 {
@@ -28,11 +28,17 @@ Route::filter('autenticacao', function() {
 
 Route::group(array('prefix' => 'admin', 'before' => 'autenticacao'), function()
 {
-    Route::get('/carteirinha/{id} ', 'CarteirinhaController@emitirCarteirinha');
+    Route::get('/carteirinha/{id}', 'CarteirinhaController@emitirCarteirinha');
+    Route::get('/carteirinha/{id}/costa', 'CarteirinhaController@emitirCarteirinhaCosta');
     Route::get('/', 'InicioAdministracaoController@listar');
     Route::get('/pessoas', [
                 'as'    =>  'artista.criar',
                 'uses'  =>  'ArtistaController@criar']);
+
+    Route::get('/pessoas/listar', [
+                'as'    =>  'artista.relacao',
+                'uses'  =>  'ArtistaController@listar']);
+
     Route::post('/pessoas',
             [
                 'as'    =>  'artista.salvar',

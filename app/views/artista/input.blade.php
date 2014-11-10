@@ -39,6 +39,48 @@
                   url: "{{ URL::action(Meta::getController() . '@' . 'postarUpload') }}"
               });
             </script>
+        @elseif($type === 'materiais')
+        {{  Form::file(
+                "materiais", ['class' => 'form-control'], 'multiple')
+            }}
+            <div class="dzpreviewcustom2 dropzone"></div>
+            <script type="text/javascript">
+              $("input[name=materiais]").dropzone({ 
+                  maxFiles: @if($name == 'foto') {{'1'}} @else {{'5'}} @endif,
+                  paramName:  "materiais",
+                  maxFilesize: 20, //mb
+//                  autoProcessQueue: false,// cancela ajax
+                  addRemoveLinks: true,
+                  dictMaxFilesExceeded : "Limite de Arquivos atingido!",
+                  dictInvalidFileType: "Formato não aceito!",
+                  autoDiscover: false,
+                  clickable: true,
+                  previewsContainer: ".dzpreviewcustom2",
+                  url: "{{ URL::action(Meta::getController() . '@' . 'postarUpload') }}"
+              });
+            </script>
+        @elseif($type === 'date')
+        {{ Form::input(
+                isset($type) ? $type : 'date',
+                $name,
+                null,
+                [
+                    'class' => 'form-control',
+                    'placeholder' => isset($placeholder) ? $placeholder : $name,
+                ]
+            )
+        }}
+        @elseif($type === 'monetario')
+        {{ Form::input(
+                isset($type) ? $type : 'date',
+                $name,
+                null,
+                [
+                    'class' => 'form-control monetario',
+                    'placeholder' => isset($placeholder) ? $placeholder : $name,
+                ]
+            )
+        }}
         @elseif($type === 'radio')
         Sim
             {{

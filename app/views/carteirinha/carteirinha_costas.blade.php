@@ -1,24 +1,12 @@
-@extends('_layouts.principal')
-
-@section('acoes-da-pagina')
-    <div class="pull-right">
-    <a class="btn btn-success" title="Clique aqui para cadastrar um novo" href="{{URL::action('CarteirinhaController@emitirCarteirinhaCosta',[$id])}}">
-    <i class="fa fa-arrow-circle-o-right"></i> Ver Costa
-    </a>
-    <div class="btn-group">
-    <a class="btn btn-default" href="{{ URL::action('ArtistaController@listar') }}">
-        <i class="fa fa-arrow-left"></i> Voltar
-    </a>
-</div>
-    </div>
-@stop
-
-@section('conteudo')
-<style type="text/css" media="screen">
-     body
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Careira</title>
+    <style>
+       body
           {
               font-family: arial;
-              font-size:12px;
+              font-size:9px;
 
           }
       
@@ -31,7 +19,6 @@
          height:78px;
          position: relative;
          z-index: 1;
-         background: url("data:image/jpeg;base64,<?php echo pg_unescape_bytea($foto)?>") no-repeat center center;
      }
      .posicionamentoimg img
      {
@@ -68,7 +55,7 @@
      .posicionamenoto_cpf_datanasc{
         text-align: left;
         position: relative;
-        top: 40px;
+        top: 45px;
         z-index: 44444;
 
      }
@@ -78,18 +65,25 @@
      }
 
      .data_nasc{
-        width: 40%;
+        width: 35%;
         float: left;
-        position: relative;
-        left: 100px;
      }
      .posicionamenoto_segmento_funcao{
-        position: relative;
-        top:65px;
-        left: -70px;
-        font-size: 8px;
-        z-index: 44444;
         text-align: left;
+        position: relative;
+        top:56px;
+        z-index: 44444;
+
+
+     }
+     .posicionamenoto_data_validade
+     {
+       width: 20%;
+         position: relative;
+        top: 160px;
+        left: 76%;
+        height: 10px;
+         z-index: 3333;
      }
      .imagem_fundo
      {
@@ -124,7 +118,7 @@
              width:295px;
              height:175px;
              background-color:#FFFFFF;
-             border:1px solid #000000;
+             border:2px solid #000000;
          //     padding:10px 10px 14px;
            
          //    overflow:hidden;
@@ -162,21 +156,11 @@
 </head>
 <body>
 <div class='bordapagina'>
-        {{ HTML::image('imagens/fundo-carteira.jpg', 'fundo',['class'=>'imagem_fundo']) }}
+        {{ HTML::image('imagens/fundo-carteira-costa.jpg', 'fundo',['class'=>'imagem_fundo']) }}
         <div class="dadospessais">
             <!--# DADOS PESSOAS-->
-                <div class='posicionamentoimg'>
-                </div><!--  #FIM DA CÉLULA QUE CHAMA A IMAGEM-->
-               <!--##################-->
-               <div  class="posicionamento_ifo">
-                   <div class="posicionamenoto_nome">{{ $nome }}</div>
-                   <div class="posicionamenoto_nome_artistico">{{ $nome_artistico }}</div>
-                   <div class="posicionamenoto_num_identificacao">{{ $cod_identificacao }}</div>
-                   <div class="posicionamenoto_cpf_datanasc"> 
-                        <div class="cpf">{{ $cpf }}</div>
-                        <div class="data_nasc">{{ $data_nascimento }}</div>
-                   </div>
-                   <div class="posicionamenoto_segmento_funcao">{{ $arearepresentacao }}</div>
+               
+                   <div class="posicionamenoto_data_validade"> 00/00/0000</div>
                </div>
         </div>
     
@@ -184,8 +168,3 @@
 
 </body>
 </html>
-
-
-@stop
-
-  

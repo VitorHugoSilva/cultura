@@ -39,7 +39,7 @@ class MigracaoTabelaRelacionadasAPessoasEArtistas extends Migration {
             $table->text('historico')->nullable;
             $table->text('portfolio')->nullable;
             $table->text('necessidade_tecnica')->nullable;
-            $table->float('valor_pretendido')->nullable;
+            $table->string('valor_pretendido')->nullable;
             $table->timestamps();
         });
 

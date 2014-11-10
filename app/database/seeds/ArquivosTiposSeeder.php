@@ -5,8 +5,8 @@ class ArquivosTiposSeeder extends Seeder
     public function run()
     {
         DB::table('arquivos_tipos')->delete();
-        ArquivoTipo::create(['nome' => 'Apresentação']);
-        ArquivoTipo::create(['nome' => 'Folder']);
+        ArquivoTipo::create(['nome' => 'Foto']);
+        ArquivoTipo::create(['nome' => 'Materiais']);
         
     }
 }
