@@ -39,7 +39,7 @@
             <td>{{ $model->nome_artistico }}</td>
             <td class="acoes">                        
                 <div class="btn-group pull-right">
-                    <a class="btn btn-default" title="Visualizar o registro" href="{{URL::action('CarteirinhaController@emitirCarteirinha',[$model->id])}}">
+                <a class="btn btn-default" title="Visualizar o registro" href="{{URL::action('CarteirinhaController@emitirCarteirinha',[$model->id])}}">
                     <i class="fa fa-credit-card"></i> Emitir Carteirinha
                     </a>
                     <a class="btn btn-default" title="Visualizar o registro" href="#">
@@ -49,7 +49,7 @@
                     <a class="btn btn-default" title="Editaro registro" href="#">
                     <i class="fa fa-pencil-square-o"></i> Editar
                     </a>
-                    <a class="btn btn-danger modal-confirm-action action-delete" title="Deletar o registro" href="#", data-mensagem="Deseja realmente deletar?">
+                    <a class="btn btn-danger modal-confirm-action action-delete" title="Deletar o registro" href="{{URL::action('ArtistaController@deletar', [$model->id])}}", data-mensagem="Deseja realmente deletar?">
                         <i class="fa fa-trash-o"></i> Deletar
                     </a>
                 </div>

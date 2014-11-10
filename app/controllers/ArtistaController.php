@@ -29,6 +29,20 @@ class ArtistaController extends BaseController
              'models' =>  $query->paginate(static::$pagination)
         ]);
     }
+    public function editar(){
+
+    }
+    public function exibir(){
+        
+    }
+    public function deletar($id){
+        Artista::find($id)->arquivos()->delete();
+        Artista::find($id)->enderecos()->delete();
+        Artista::find($id)->segmentos()->detach();
+        Artista::find($id)->contatos()->delete();
+        Artista::find($id)->delete();
+        return Redirect::action('ArtistaController@listar');
+    }
     public function salvar(){
         DB::beginTransaction();
         $artista = new Artista(Input::only(
@@ -114,14 +128,11 @@ class ArtistaController extends BaseController
                 $artista->segmentos()->sync($segmentos['artista']['segmentos']);
             }
            
-
+            DB::commit();
+            return Redirect::action('ArtistaController@listar');
           }else{
-              DB::rollback();
-          }
-//          var_dump(Input::all());
-//          DB::rollback();
-          DB::commit();
-        Input::flashOnly(
+            DB::rollback();
+             Input::flashOnly(
                 'nome', 
                 'nome_artistico', 
                 'inscricao_estadual', 
@@ -141,7 +152,9 @@ class ArtistaController extends BaseController
                 'necessidade_tecnica'
                 );
 
-       return Redirect::action('ArtistaController@criar')->withErrors($artista->errors());
+            return Redirect::action('ArtistaController@criar')->withErrors($artista->errors());
+          }
+       
     }
     
     public function postarUpload(){

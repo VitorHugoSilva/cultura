@@ -7,6 +7,8 @@ class Artista extends BaseModel
 
     protected $table = 'pessoas';
 
+    public static $asOption = ['nome', 'id'];
+
     public static $rules = [
         'data_nascimento'   =>  'required|regex:/^\d{4}-\d{1,2}-\d{1,2}$/',
         'nome'              =>  'required',
@@ -62,11 +64,20 @@ class Artista extends BaseModel
     
     public function segmentos()
     {
-        return $this->belongsToMany('SegmentoCultural');
+        return $this->belongsToMany('PessoasSegmentos', 'artista_segmento_cultural', 'artista_id', 'segmento_cultural_id');
     }
+
     public function arearepresentacao()
     {
         return $this->belongsTo('AreaRepresentacao');  
+    }
+    public function enderecos()
+    {
+        return $this->hasMany('Endereco', 'pessoa_id');  
+    }
+    public function contatos()
+    {
+        return $this->hasMany('Contato', 'pessoa_id');  
     }
     public function arquivos()
     {

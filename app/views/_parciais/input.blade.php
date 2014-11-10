@@ -10,7 +10,7 @@
         @if($type === 'select')
             <?php list($model, $data_field) = explode('.', $name);  ?>
             {{  Form::select(
-                    strtolower($model) . '_id',
+                    (strtolower($model) == 'artista' ? 'pessoa' : strtolower($model)) . '_id',
                     $model::options(),
                     null,
                     [

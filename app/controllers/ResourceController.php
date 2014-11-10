@@ -19,6 +19,7 @@ abstract class ResourceController extends BaseController
     public function listar()
     {
         $query = call_user_func(static::$model . '::search', Input::get('pesquisa', null));
+
         Input::flash();
 
         return View::make($this->getViewName(__FUNCTION__))->with([
@@ -45,6 +46,7 @@ abstract class ResourceController extends BaseController
      */
     public function salvar()
     {
+        // dd(Input::all());
         $model = new static::$model(Input::all());
 
         if ($model->save()) {

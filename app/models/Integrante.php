@@ -2,26 +2,28 @@
 
 class Integrante extends BaseModel
 {
-    protected $fillable = ['nome'];
+    protected $fillable = ['pessoa_id', 'grupo_id'];
 
     protected $table = 'integrantes';
 
-    public static $rules = [
-        'nome' => 'required|max:40|unique:estados_civis'
-    ];
-
     public static $meta = [
-        'nome' => 'text|Integrante|O estado civil do indivíduo',
+        'Artista.nome' => 'select|Integrante|O estado civil do indivíduo',
         'Grupo.nome' => 'select|Grupo|Selecione a qual grupo artístico ele pertence'
     ];
 
+
+
     public function grupo()
     {
-        return $this->belongsTo('Grupo');
+        return $this->belongsToMany('Grupo', 'grupos');
     }
 
-    public function pessoas()
+    public function artista()
     {
-        return $this->hasMany('Pessoas');
+        return $this->belongsToMany('Artista', 'pessoas');
+    }
+
+    public static function search($termo){
+        return self::select();
     }
 }

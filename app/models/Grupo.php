@@ -5,7 +5,7 @@ class Grupo extends BaseModel
     protected $fillable = ['nome'];
 
     protected $table = 'grupos';
-
+    public static $asOption = ['nome', 'id'];
     public static $rules = [
         'nome' => 'required|max:40|unique:grupos'
     ];

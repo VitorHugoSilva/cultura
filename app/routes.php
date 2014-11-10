@@ -1,7 +1,7 @@
 <?php
 Route::pattern('id', '[0-9]+');
 
-// Route::get('/', 'ArtistaController@criar');
+Route::get('/', 'LoginController@login');
 
 Route::group(array('prefix' => 'entrada'), function()
 {
@@ -44,7 +44,16 @@ Route::group(array('prefix' => 'admin', 'before' => 'autenticacao'), function()
                 'as'    =>  'artista.salvar',
                 'uses'  =>  'ArtistaController@salvar'
             ]);
-
+    Route::get('/pessoas/editar',
+            [
+                'as'    =>  'artista.editar',
+                'uses'  =>  'ArtistaController@editar'
+            ]);
+    Route::get('/pessoas/deletar/{id}',
+            [
+                'as'    =>  'artista.deletar',
+                'uses'  =>  'ArtistaController@deletar'
+            ]);
     // Menus
     Route::get(
             'menus/criar/{id}',

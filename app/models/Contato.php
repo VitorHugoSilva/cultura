@@ -24,6 +24,9 @@ class Contato extends BaseModel
         }
     }
 
+    public function artista(){
+        return $this->belongsTo('Artista');
+    }
     public function tipoContato()
     {
         return $this->belongsTo('TipoContato');
